@@ -19,22 +19,27 @@ import {ChatService} from '../services/chat.service';
 })
 export class ShotlistComponent implements OnInit {
   static   userID: string;
-  shotList: FirebaseListObservable<ShotMod[]>;
+  shots: FirebaseListObservable<ShotMod[]>;
   test: string;
   path: string;
+  userId: any;
+  shotArray: ShotMod[];
 
 
-  constructor(private af: AngularFireDatabase, private authService: AuthService,  private router: Router,
-              private cs: ChatService) {
-    this.path = 'shot/';
-    this.authService.authUser().subscribe(user => {
-       console.log('user:: ' + this.path + user.uid);
-     });
+  constructor(private af: AngularFireDatabase,
+     private authService: AuthService, 
+      private router: Router,
+      private ss: ShotsService) {
 
-
-
+        this.shots = ss.getShots();
+      
   }
   ngOnInit() {
+    this.shots = this.ss.getShots();
+    //console.log(this.shots);
+    this.shots.subscribe(result => {console.log("Number of shots returned:: "+ result.length)});
+    this.shots.subscribe(result => {console.log(result)});
+    
 
 
   }

@@ -55,6 +55,7 @@ export class ChatService {
 
   getMessages(): FirebaseListObservable<ChatMessage[]> {
     // query to create our message feed binding
+    
     return this.db.list('messages', {
       query: {
         limitToLast: 25,

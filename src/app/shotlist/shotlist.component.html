@@ -1,9 +1,14 @@
-<div>
-  <!--<div *ngFor="let Shot of shotList | async" class="shot">-->
-    <!--&lt;!&ndash;<app-shot [SHOT]=shot></app-shot>&ndash;&gt;-->
-    <!--{{shot.club}}-->
-
-
-  <!--</div>-->
-  <p>shot list</p>
+<div class="feed">
+    <!-- <p>shot list</p> -->
+  <div *ngFor="let shot of shots | async"  class="message" >
+     <app-shot [SHOT]=shot></app-shot>
+   
 </div>
+  
+</div>
+
+<!-- <div class="feed">
+  <div *ngFor="let message of feed | async" class="message">
+    <app-message [chatMessage]=message></app-message>
+  </div>
+</div> -->

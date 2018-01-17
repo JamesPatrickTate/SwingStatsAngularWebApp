@@ -1,0 +1,9 @@
+.messageContent{
+    height: auto;
+    flex: 9;
+    /*background-color: #fff;*/
+    background:rgba(255,255,255,0.5);
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }

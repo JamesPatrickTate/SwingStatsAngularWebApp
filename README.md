@@ -30,3 +30,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 #### my notes
 To create component => ng g c component-name
 to create service => ng g s service-name eg auth
+
+Login details for testing 
