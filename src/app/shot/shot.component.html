@@ -1,8 +1,20 @@
 <div class="messageContent">
   <!-- <p>Shot Component</p> -->
-   <p>{{$key}}</p>
-   <p>{{club}}</p>
-   <p>{{shotDistance}}</p>
+  <agm-map [latitude]="startLatitude" [longitude]="startLongitude" [zoom]=18 [mapTypeControl]=true [mapTypeControlOptions]="DROPDOWN_MENU" >
+      <agm-marker [latitude]="startLatitude" [longitude]="startLongitude"></agm-marker>
+      <agm-marker [latitude]="endLatitude" [longitude]="endLongitude"></agm-marker>
+    </agm-map>
+
+   <p>Time and Date of Shot: {{$key}}</p>
+   <p>Club: {{club}}</p>
+   <p>Distance: {{shotDistance}} m</p>
+   <p>Swing Length: {{swingLength}} </p>
+   <p>Swing Velocity: {{swingVelocity}} m/s</p>
+   <p>Average:  {{average}}</p>
+
+
+
+
 
   </div>
 

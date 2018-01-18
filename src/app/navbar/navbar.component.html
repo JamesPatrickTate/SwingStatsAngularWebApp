@@ -1,7 +1,17 @@
 <div class="navBar">
   <div id="logo"></div>
   <div id="heading"><a routerLink="/">SwingStats</a></div>
+  <div class="pageLinks">
+    <span>
+      <a [routerLink]="['../chat']" class = "r">Chat</a>
+    </span><span>
+      <a [routerLink]="['../dashboard']" class = "r">Shots</a>
+    </span><span>
+      <a class = "r">Statistics</a>
+    </span>
+  </div>
   <div class="links">
+
     <span>
       <a *ngIf="!(user|async)?.uid" href="#" (click)="login()">Login</a>
     </span>

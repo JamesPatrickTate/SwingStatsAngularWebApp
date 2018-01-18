@@ -11,6 +11,8 @@ import {ChatMessage} from '../models/chat-message.model';
 })
 export class ShotComponent implements OnInit {
 
+ 
+
   @Input() SHOT: ShotMod;
   $key?: string;
   endLatitude?: string;
@@ -32,29 +34,15 @@ export class ShotComponent implements OnInit {
     this.$key = SHOT.$key;
     this.club = SHOT.club;
     this.shotDistance = SHOT.shotDistance;
-    console.log("club from shot component:: " + this.club)
+    this.endLatitude = SHOT.endLatitude;
+    this.endLongitude = SHOT.endLongitude;
+    this.startLatitude = SHOT.startLatitude;
+    this.startLongitude = SHOT.startLongitude;
+    this.swingLength = SHOT.swingLength;
+    this.shotVelocity = SHOT.shotVelocity;
+    this.gsr = SHOT.gsr;
+    
   }
 
 
 }
-// @Input() chatMessage: ChatMessage;
-//   userEmail: string;
-//   userName: string;
-//   messageContent: string;
-//   timeStamp: Date = new Date();
-//   isOwnMessage: boolean;
-//   ownEmail: string;
-
-//   constructor(private authService: AuthService) {
-//     authService.authUser().subscribe(user => {
-//       this.ownEmail = user.email;
-//       this.isOwnMessage = this.ownEmail === this.userEmail;
-//     });
-//   }
-
-//   ngOnInit(chatMessage = this.chatMessage) {
-//     this.messageContent = chatMessage.message;
-//     this.timeStamp = chatMessage.timeSent;
-//     this.userEmail = chatMessage.email;
-//     this.userName = chatMessage.userName;
-//   }

@@ -7,6 +7,7 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 // import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -31,7 +32,7 @@ import { ShotComponent } from './shot/shot.component';
 import { AvglistComponent } from './avglist/avglist.component';
 import { AvgshotComponent } from './avgshot/avgshot.component';
 import {ShotsService} from "./services/shots.service";
-
+//AIzaSyBotTTO_JLE5Pb5O2bPhhBJUFZKrgDA5sk
 
 @NgModule({
   declarations: [
@@ -58,7 +59,10 @@ import {ShotsService} from "./services/shots.service";
     AngularFireModule,
     AngularFireDatabaseModule,
    AngularFireAuthModule,
-   AngularFireModule.initializeApp(environment.firebase)
+   AngularFireModule.initializeApp(environment.firebase),
+   AgmCoreModule.forRoot({
+    apiKey: 'AIzaSyBotTTO_JLE5Pb5O2bPhhBJUFZKrgDA5sk'
+  })
   ],
   providers: [AuthService, ChatService, ShotsService],
   bootstrap: [AppComponent]

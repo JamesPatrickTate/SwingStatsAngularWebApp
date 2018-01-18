@@ -18,7 +18,9 @@ import {ShotMod} from '../models/shot.model';
 export class ShotsService {
   user: Observable<firebase.User>;
 
-
+  average: number=0;
+  totalDistance: number=0;
+  finalAverage: number = 0;
   shots: FirebaseListObservable<any[]>;
   shot: ShotMod;
   userID: any;
@@ -36,7 +38,7 @@ export class ShotsService {
   getShots(): FirebaseListObservable<ShotMod[]> {
    // return this.shots;
    console.log("getShots path " + this.shotsPath);
-    return this.db.list('shot/VHKkyv7mw1ffiyg8veLkmNclygE3', {
+    return this.db.list('shot/k6QRNaAR5fSl12k6qSHOApHL6Mg2', {
     //return this.db.list(, {
       query: {
         query: {
@@ -47,6 +49,6 @@ export class ShotsService {
     });
   }
 
-
+ 
 
 }
