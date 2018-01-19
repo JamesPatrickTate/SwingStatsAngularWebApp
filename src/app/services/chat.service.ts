@@ -29,6 +29,10 @@ export class ChatService {
       });
     });
   }
+  getUserName() {
+    console.log('from chat serviceusername :: ' + this.userName);
+     return this.userName;
+  }
 
   getUser() {
     const userId = this.user.uid;
@@ -55,7 +59,7 @@ export class ChatService {
 
   getMessages(): FirebaseListObservable<ChatMessage[]> {
     // query to create our message feed binding
-    
+
     return this.db.list('messages', {
       query: {
         limitToLast: 25,

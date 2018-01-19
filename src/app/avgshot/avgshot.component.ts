@@ -12,6 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {Router} from '@angular/router';
 import {ChatService} from '../services/chat.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import {observableToBeFn} from "rxjs/testing/TestScheduler";
 
 @Component({
   selector: 'app-avgshot',
@@ -20,41 +21,58 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class AvgshotComponent implements OnInit {
 
+
+  user: firebase.User;
   shots: FirebaseListObservable<ShotMod[]>;
-  test: string;
-  path: string;
+  userNameObs: Observable<string>;
+  userName: string;
   userId: any;
   shotArray: ShotMod[];
-  driverAverage: number=0;
-  driverlongest: number=0;
-  fivelongest: number=0;
-  totalDistance: number=0;
+  driverAverage: number = 0;
+  driverlongest: number = 0;
+  fivelongest: number = 0;
+  totalDistance: number = 0;
   fiveAverage: number = 0;
   sixAverage: number = 0;
   counter = 0;
+  temp= 0;
 
 
-  constructor(private ss: ShotsService) { }
+  constructor(private ss: ShotsService, private afAuth: AngularFireAuth,
+              private db: AngularFireDatabase) {
+
+
+  }
+
 
   ngOnInit() {
+
+
+
+
     this.shots = this.ss.getShots();
-    this.shots.subscribe(result => {console.log("Number of shots returned:: "+ result.length)});
+    this.shots.subscribe(result => {
+      console.log("Number of shots returned:: " + result.length)
+    });
     this.shots.subscribe(result => {
 
       //driver distance
-      for(let i of result) {
+      for (let i of result) {
         if (i.club === 'D' && parseFloat(i.shotDistance) > 0) {
-          console.log("driver "+ parseFloat(i.shotDistance) );
+          console.log("driver " + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
 
-          if(parseFloat(i.shotDistance) > this.driverlongest){ this.driverlongest = parseFloat(i.shotDistance);}
+          if (parseFloat(i.shotDistance) > this.driverlongest) {
+            this.driverlongest = parseFloat(i.shotDistance);
+          }
         }
 
-    }
+      }
 
 
-    this.driverAverage = this.totalDistance / this.counter;
+      this.temp = this.totalDistance / this.counter;
+      this.driverAverage = Math.floor(this.temp * 100) / 100;
 
     });
 
@@ -65,34 +83,40 @@ export class AvgshotComponent implements OnInit {
     //5iron
     this.shots.subscribe(result => {
 
-    for(let i of result) {
-      if (i.club === '5I' && parseFloat(i.shotDistance) > 0) {
-        console.log("5 iron total "+ parseFloat(i.shotDistance) );
-        this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
-        this.counter++;
-        if(parseFloat(i.shotDistance) > this.fivelongest){ this.fivelongest = parseFloat(i.shotDistance);}
+      for (let i of result) {
+        if (i.club === '5I' && parseFloat(i.shotDistance) > 0) {
+          console.log("5 iron total " + parseFloat(i.shotDistance));
+          this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
+          this.counter++;
+          if (parseFloat(i.shotDistance) > this.fivelongest) {
+            this.fivelongest = parseFloat(i.shotDistance);
+          }
+        }
       }
-  }
-  this.fiveAverage = this.totalDistance/this.counter;
+
+      this.temp = this.totalDistance / this.counter;
+      this.fiveAverage = Math.floor(this.temp * 100) / 100;
     });
 
     //6iron
     this.shots.subscribe(result => {
 
-      for(let i of result) {
+      for (let i of result) {
         if (i.club == '6I') {
-          console.log("6iron total "+ parseFloat(i.shotDistance) );
+          console.log("6iron total " + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
 
         }
-    }
-    this.sixAverage = this.totalDistance/result.length;
-      });
-
+      }
+      this.sixAverage = this.totalDistance / result.length;
+    });
 
 
   }
+
+
+
 
 }
 // clubs.add("D");

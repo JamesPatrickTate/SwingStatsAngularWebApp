@@ -1,0 +1,26 @@
+
+.stats-container{
+  width: 100%;
+
+  background:
+    /*linear-gradient(181deg, rgba(100,200,255,0.6), rgba(0, 0, 0, 0.9)),*/
+    url('../../assets/img/Generic-Golf-Image.jpg') center center no-repeat;;
+    /*url('../../assets/img/happy-gilmore-lines-up-a-putt.jpg') center center no-repeat;;*/
+}
+.stat-title {
+  height: fit-content;
+  border: 5px;
+  position: relative; /* or absolute */
+    /*p: 50%;*/
+
+  padding: 5px;
+}
+
+.avg-and-max-shot {
+  height: fit-content;
+  border: 2px;
+  position: relative;
+  /*p: 50%;*/
+
+  padding: 20px;
+}
