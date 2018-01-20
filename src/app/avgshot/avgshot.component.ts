@@ -50,7 +50,8 @@ export class AvgshotComponent implements OnInit {
 
 
 
-    this.shots = this.ss.getShots();
+    // this.shots = this.ss.getShots();
+     this.shots = this.ss.getShotsNoParams();
     this.shots.subscribe(result => {
       console.log("Number of shots returned:: " + result.length)
     });

@@ -1,16 +1,31 @@
 
+<div class="search-shotlist">
+  <!--wrapper-->
 
-
+<div class="search">
+  <p class="space"></p>
+  <h2>Shot Search</h2>
+  <input type="text" (keydown)="search($event)" placeholder="search shots..." class="input">
+  <p class="gap"></p>
+  <p class="directions">Use the search function to isolate shots relevant to you. For example search Driver</p>
+</div>
 
 <div class="feed">
     <!-- <p>shot list</p> -->
-  <div *ngFor="let shot of shots | async"  class="message" >
+  <div *ngFor="let shot of shots" class="message" >
+  <!--<div *ngFor="let shot of shots | async"  class="message" >-->
      <app-shot [SHOT]=shot></app-shot>
-   
-</div>
-  
+  </div>
+
+  <div *ngIf="shots?.length < 1">
+    <hr>
+    <div class="no-data"><p>Please enter value in search </p>></div>
+    <hr>
 </div>
 
+</div>
+
+</div>
 <!-- <div class="feed">
   <div *ngFor="let message of feed | async" class="message">
     <app-message [chatMessage]=message></app-message>

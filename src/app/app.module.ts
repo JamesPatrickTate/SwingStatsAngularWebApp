@@ -32,6 +32,7 @@ import { ShotComponent } from './shot/shot.component';
 import { AvglistComponent } from './avglist/avglist.component';
 import { AvgshotComponent } from './avgshot/avgshot.component';
 import {ShotsService} from "./services/shots.service";
+import { SearchComponent } from './search/search.component';
 //AIzaSyBotTTO_JLE5Pb5O2bPhhBJUFZKrgDA5sk
 
 @NgModule({
@@ -50,7 +51,8 @@ import {ShotsService} from "./services/shots.service";
     ShotlistComponent,
     ShotComponent,
     AvglistComponent,
-    AvgshotComponent
+    AvgshotComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

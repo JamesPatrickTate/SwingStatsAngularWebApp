@@ -14,6 +14,7 @@ import {ShotMod} from '../models/shot.model';
 
 
 
+
 @Injectable()
 export class ShotsService {
   user: Observable<firebase.User>;
@@ -35,20 +36,38 @@ export class ShotsService {
     });
   }
 
-  getShots(): FirebaseListObservable<ShotMod[]> {
+  getShots(start, end): FirebaseListObservable<ShotMod[]> {
+  //getShots(start, end): FirebaseListObservable<ShotMod[]> {
+
    // return this.shots;
-   console.log("getShots path " + this.shotsPath);
+   console.log(' service start: ' + start);
+   console.log('end: ' + end);
     return this.db.list('shot/k6QRNaAR5fSl12k6qSHOApHL6Mg2', {
-    //return this.db.list(, {
+        query: {
+          orderByChild: 'club',
+          limitToFirst: 10,
+          startAt: start,
+          endAt: end
+      }
+    });
+  }
+  getShotsNoParams(): FirebaseListObservable<ShotMod[]> {
+    // return this.shots;
+    console.log("getShots path " + this.shotsPath);
+    return this.db.list('shot/k6QRNaAR5fSl12k6qSHOApHL6Mg2', {
+      //return this.db.list(, {
       query: {
         query: {
+
           limitToLast: 25,
           orderByKey: true
+
+
         }
       }
     });
   }
 
- 
+
 
 }
