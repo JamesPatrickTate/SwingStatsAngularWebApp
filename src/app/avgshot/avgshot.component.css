@@ -78,3 +78,6 @@ table#t01 {
   height: fit-content;
   padding: 5px;
 }
+.graph-conatiner {
+  padding-top: 500px;
+}

@@ -82,10 +82,42 @@
 
 }
 
+.cont{
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 200px;
+  margin-right: auto;
+}
+
 .no-data {
-  background:
-    /*linear-gradient(181deg, rgba(100,200,255,0.6), rgba(0, 0, 0, 0.9)),*/
-    url('../../assets/img/sad-face-emoticon-by-vexels.png') no-repeat;;
+  /*padding: 10%;*/
+
+  margin-left: 100px;
+  margin-right: auto;
+  /*width: 50%;*/
+
+
+
+
+
+}
+.enter-text-promt {
+  color: white;
+
+padding-left: 100px;
+  margin-left: 20px;
 
 }
 
+h2 {
+  color: white;
+}
+
+.gap2{
+  height: 100px;
+  padding: 10px;
+}
