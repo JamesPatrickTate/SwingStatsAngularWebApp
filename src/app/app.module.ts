@@ -33,6 +33,7 @@ import { AvglistComponent } from './avglist/avglist.component';
 import { AvgshotComponent } from './avgshot/avgshot.component';
 import {ShotsService} from "./services/shots.service";
 import { SearchComponent } from './search/search.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 //AIzaSyBotTTO_JLE5Pb5O2bPhhBJUFZKrgDA5sk
 
 @NgModule({
@@ -64,7 +65,8 @@ import { SearchComponent } from './search/search.component';
    AngularFireModule.initializeApp(environment.firebase),
    AgmCoreModule.forRoot({
     apiKey: 'AIzaSyBotTTO_JLE5Pb5O2bPhhBJUFZKrgDA5sk'
-  })
+  }),
+    ChartsModule
   ],
   providers: [AuthService, ChatService, ShotsService],
   bootstrap: [AppComponent]

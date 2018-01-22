@@ -9,6 +9,8 @@ import * as firebase from "firebase/app";
   styleUrls: ['./avglist.component.css']
 })
 export class AvglistComponent implements OnInit {
+
+
   user: firebase.User;
   userName: string;
 
@@ -33,5 +35,7 @@ export class AvglistComponent implements OnInit {
     const path = `/Users/${userId}`;
     return this.db.object(path);
   }
+
+
 
 }

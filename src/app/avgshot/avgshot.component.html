@@ -6,7 +6,7 @@
 
         <tr>
           <td>Driver</td>
-          <td>{{driverlongest}}</td>
+          <td>{{ driverlongest }}</td>
           <td>3 wood</td>
           <td>Full</td>
           <td>5 iron</td>
@@ -44,7 +44,7 @@
       <tr>
         <td>Driver</td>
         <td>Full</td>
-        <td>{{driverAverage}}</td>
+        <td>{{ driverAverage }}</td>
       </tr>
       <tr>
         <td>3 wood</td>
@@ -54,7 +54,7 @@
       <tr>
         <td>5 iron</td>
         <td>Full</td>
-        <td>{{fiveAverage}}</td>
+        <td>{{ fiveAverage }}</td>
       </tr>
       <tr>
         <td>6 iron</td>
@@ -97,7 +97,7 @@
       <tr>
         <td>Driver</td>
         <td>Full</td>
-        <td>{{driverAverage}}</td>
+        <td>{{ driverAverage }}</td>
       </tr>
       <tr>
         <td>3 wood</td>
@@ -107,7 +107,7 @@
       <tr>
         <td>5 iron</td>
         <td>Full</td>
-        <td>{{fiveAverage}}</td>
+        <td>{{ fiveAverage }}</td>
       </tr>
       <tr>
         <td>6 iron</td>
@@ -147,7 +147,7 @@
       <tr>
         <td>Driver</td>
         <td>Full</td>
-        <td>{{driverAverage}}</td>
+        <td>{{ driverAverage }}</td>
       </tr>
       <tr>
         <td>3 wood</td>
@@ -157,7 +157,7 @@
       <tr>
         <td>5 iron</td>
         <td>Full</td>
-        <td>{{fiveAverage}}</td>
+        <td>{{ fiveAverage }}</td>
       </tr>
       <tr>
         <td>6 iron</td>
@@ -198,7 +198,7 @@
       <tr>
         <td>Driver</td>
         <td>Full</td>
-        <td>{{driverAverage}}</td>
+        <td>{{ driverAverage }}</td>
       </tr>
       <tr>
         <td>3 wood</td>
@@ -208,7 +208,7 @@
       <tr>
         <td>5 iron</td>
         <td>Full</td>
-        <td>{{fiveAverage}}</td>
+        <td>{{ fiveAverage }}</td>
       </tr>
       <tr>
         <td>6 iron</td>
@@ -247,6 +247,29 @@
 <div class="graph-conatiner">
 <h1>Graphing your progress</h1>
 </div>
+
+
+
+
+<div class="line-graph">
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+  </div>
+</div>
+
+
+
+
 
 
 
