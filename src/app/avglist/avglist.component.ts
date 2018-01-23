@@ -17,6 +17,14 @@ export class AvglistComponent implements OnInit {
   userName: string;
   dates: any[];
   distanceArray: Array<number>;
+  distanceArrayW: Array<number>;
+  distanceArray5: Array<number>;
+  distanceArray6: Array<number>;
+  distanceArray7: Array<number>;
+  distanceArray8: Array<number>;
+  distanceArray9: Array<number>;
+  distanceArraysw: Array<number>;
+
   shots: FirebaseListObservable<ShotMod[]>;
 
 
@@ -76,6 +84,14 @@ export class AvglistComponent implements OnInit {
               private db: AngularFireDatabase, private ss: ShotsService) {
 
     this.distanceArray = [0];
+    this.distanceArrayW = [0];
+    this.distanceArray5 = [0];
+    this.distanceArray6 = [0];
+    this.distanceArray7 = [0];
+    this.distanceArray8 = [0];
+    this.distanceArray9 = [0];
+    this.distanceArraysw = [0];
+
     this.dates = [0];
   }
 
@@ -101,6 +117,7 @@ export class AvglistComponent implements OnInit {
       for (const i of result) {
 
         if (parseFloat(i.club === 'D' && i.shotDistance) > 0) {
+
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -131,6 +148,7 @@ export class AvglistComponent implements OnInit {
     this.shots.subscribe(result => {
 
       for (const i of result) {
+
       //&& i.swingLength === 'full'
         if (i.club === '5I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
 
@@ -141,17 +159,18 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-          //console.log('values')
-         // console.log(i.$key + ':: ' + i.shotDistance);
+          console.log('values');
+         console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels5i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArray5.push(parseFloat(i.shotDistance));
 
 
         }
       }
+      console.log(this.distanceArray);
 
-      this.barChartData5i = [{data: this.distanceArray, label:'5 Iron distances in meters'}];
+      this.barChartData5i = [{data: this.distanceArray5, label:'5 Iron distances in meters'}];
 
 
 
@@ -159,6 +178,7 @@ export class AvglistComponent implements OnInit {
 
     /////////////////////////////////////////
     this.shots.subscribe(result => {
+
 
       for (const i of result) {
         //&& i.swingLength === 'full'
@@ -175,13 +195,13 @@ export class AvglistComponent implements OnInit {
          // console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels3w.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArrayW.push(parseFloat(i.shotDistance));
 
 
         }
       }
 
-      this.barChartData3w = [{data: this.distanceArray, label:'3 Wood distances in meters'}];
+      this.barChartData3w = [{data: this.distanceArrayW, label:'3 Wood distances in meters'}];
 
 
 
@@ -190,6 +210,7 @@ export class AvglistComponent implements OnInit {
     /////////////////////
 
     this.shots.subscribe(result => {
+      this.distanceArray = [];
 
       for (const i of result) {
         //&& i.swingLength === 'full'
@@ -206,13 +227,13 @@ export class AvglistComponent implements OnInit {
          // console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels6i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArray6.push(parseFloat(i.shotDistance));
 
 
         }
       }
 
-      this.barChartData6i = [{data: this.distanceArray, label:'6 Iron distances in meters'}];
+      this.barChartData6i = [{data: this.distanceArray6, label:'6 Iron distances in meters'}];
 
 
 
@@ -222,6 +243,7 @@ export class AvglistComponent implements OnInit {
     ///////////////////////////////////////////////////
 
     this.shots.subscribe(result => {
+      this.distanceArray = [];
 
       for (const i of result) {
         //&& i.swingLength === 'full'
@@ -238,13 +260,13 @@ export class AvglistComponent implements OnInit {
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels7i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArray7.push(parseFloat(i.shotDistance));
 
 
         }
       }
 
-      this.barChartData7i = [{data: this.distanceArray, label:'7 Iron distances in meters'}];
+      this.barChartData7i = [{data: this.distanceArray7, label:'7 Iron distances in meters'}];
 
 
 
@@ -253,6 +275,7 @@ export class AvglistComponent implements OnInit {
     ////////////////////////////////
 
     this.shots.subscribe(result => {
+
 
       for (const i of result) {
         //&& i.swingLength === 'full'
@@ -269,13 +292,13 @@ export class AvglistComponent implements OnInit {
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels8i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArray8.push(parseFloat(i.shotDistance));
 
 
         }
       }
 
-      this.barChartData8i = [{data: this.distanceArray, label:'8 Iron distances in meters'}];
+      this.barChartData8i = [{data: this.distanceArray8, label:'8 Iron distances in meters'}];
 
 
 
@@ -283,7 +306,7 @@ export class AvglistComponent implements OnInit {
 
     ///
     this.shots.subscribe(result => {
-
+      this.distanceArray = [];
       for (const i of result) {
         //&& i.swingLength === 'full'
         if (i.club === '9I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
@@ -295,17 +318,18 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-          //console.log('values')
+         // console.log('values');
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels9i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArray9.push(parseFloat(i.shotDistance));
+
 
 
         }
       }
 
-      this.barChartData9i = [{data: this.distanceArray, label:'9 Iron distances in meters'}];
+      this.barChartData9i = [{data: this.distanceArray9, label:'9 Iron distances in meters'}];
 
 
 
@@ -314,6 +338,7 @@ export class AvglistComponent implements OnInit {
     //////////////////////////////
 
     this.shots.subscribe(result => {
+      this.distanceArray = [];
 
       for (const i of result) {
         //&& i.swingLength === 'full'
@@ -330,13 +355,13 @@ export class AvglistComponent implements OnInit {
           //console.log(i.$key + ':: ' + i.shotDistance);
 
           this.barChartLabelssw.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
-          this.distanceArray.push(parseFloat(i.shotDistance));
+          this.distanceArraysw.push(parseFloat(i.shotDistance));
 
 
         }
       }
 
-      this.barChartDatasw = [{data: this.distanceArray, label:'Sand Wedge distances in meters'}];
+      this.barChartDatasw = [{data: this.distanceArraysw, label:'Sand Wedge distances in meters'}];
 
 
 
