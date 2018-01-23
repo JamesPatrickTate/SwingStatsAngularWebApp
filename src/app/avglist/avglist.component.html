@@ -1,5 +1,152 @@
 <div class="stats-container">
   <header class="stat-title"><h3><b>{{userName}}</b> here are you statistics </h3></header>
-  <app-avgshot class="avg-and-max-shot"></app-avgshot>
 
+  <div class="Shot-list-cont">
+    <app-avgshot class="avg-and-max-shot"></app-avgshot>
+
+    <div class="graph-conatiner">
+      <p class="graphing-heading"><b>Graphing your progress</b> :: you can view you last 100 full shots with each club.
+        You can use this data to measure you consistency</p>
+
+      <div class="graphs">
+
+
+        <div class="line-graph">
+          <div style="display: block">
+
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+
+
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData3w"
+                    [labels]="barChartLabels3w"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData5i"
+                    [labels]="barChartLabels5i"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData6i"
+                    [labels]="barChartLabels6i"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+
+
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData7i"
+                    [labels]="barChartLabels7i"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+        <div class="gap"></div>
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData8i"
+                    [labels]="barChartLabels8i"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+        <div class="gap"></div>
+
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartData9i"
+                    [labels]="barChartLabels9i"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+
+        <div class="gap"></div>
+
+        <div class="line-graph">
+          <div style="display: block">
+            <!--add heading-->
+
+            <canvas baseChart
+                    [datasets]="barChartDatasw"
+                    [labels]="barChartLabelssw"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

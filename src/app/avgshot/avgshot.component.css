@@ -19,7 +19,8 @@
 }
 .floating-box2 {
 
- width: fit-content;
+
+  margin: auto;
   /*padding: 30px;*/
 
   /*width: 150px;*/
@@ -28,7 +29,7 @@
   /*border: 3px solid #73AD21;*/
   display: flex;
   height: auto;
-  width: auto;
+  width: fit-content;
   /*min-width: 400px;*/
   border-radius: 5px;
   align-items:stretch;

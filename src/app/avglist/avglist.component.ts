@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase} from "angularfire2/database-deprecated";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database-deprecated";
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from "firebase/app";
+import {ShotMod} from "../models/shot.model";
+import {ShotsService} from "../services/shots.service";
 
 @Component({
   selector: 'app-avglist',
@@ -13,9 +15,71 @@ export class AvglistComponent implements OnInit {
 
   user: firebase.User;
   userName: string;
+  dates: any[];
+  distanceArray: Array<number>;
+  shots: FirebaseListObservable<ShotMod[]>;
+
+
+  ///// chart declarations////
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+
+  public barChartData:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels:string[] = ['']; //;
+
+  public barChartData3w:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels3w:string[] = ['']; //;
+
+  public barChartData5i:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels5i:string[] = ['']; //;
+
+  public barChartData6i:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels6i:string[] = ['']; //;
+
+  public barChartData7i:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels7i:string[] = ['']; //;
+
+  public barChartData8i:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels8i:string[] = ['']; //;
+
+  public barChartData9i:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabels9i:string[] = ['']; //;
+
+  public barChartDatasw:any[]= [
+    {data: [0], label: ' '}
+  ];
+  barChartLabelssw:string[] = ['']; //;
+
+
+  /////////////////////////
 
   constructor(private afAuth: AngularFireAuth,
-              private db: AngularFireDatabase) { }
+              private db: AngularFireDatabase, private ss: ShotsService) {
+
+    this.distanceArray = [0];
+    this.dates = [0];
+  }
+
+
 
   ngOnInit() {
 
@@ -28,12 +92,275 @@ export class AvglistComponent implements OnInit {
         this.userName = a.displayName;
       });
     });
+
+    /////////////// charts //////////////////////////////
+    this.shots = this.ss.getShotsNoParams();
+    ////
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+
+        if (parseFloat(i.club === 'D' && i.shotDistance) > 0) {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+         // console.log('values')
+         // console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData = [{data: this.distanceArray, label:'Driver distances in meters'}];
+
+
+
+    });
+
+
+    ////////////////////////////////////////////////////////////////
+
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+      //&& i.swingLength === 'full'
+        if (i.club === '5I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+          //console.log('values')
+         // console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels5i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData5i = [{data: this.distanceArray, label:'5 Iron distances in meters'}];
+
+
+
+    });
+
+    /////////////////////////////////////////
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === '3W' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+         // console.log('values')
+         // console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels3w.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData3w = [{data: this.distanceArray, label:'3 Wood distances in meters'}];
+
+
+
+    });
+
+    /////////////////////
+
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === '6I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+         // console.log('values')
+         // console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels6i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData6i = [{data: this.distanceArray, label:'6 Iron distances in meters'}];
+
+
+
+    });
+
+
+    ///////////////////////////////////////////////////
+
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === '7I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+         // console.log('values')
+          //console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels7i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData7i = [{data: this.distanceArray, label:'7 Iron distances in meters'}];
+
+
+
+    });
+
+    ////////////////////////////////
+
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === '8I' && parseFloat( i.shotDistance) > 0  && i.swingLength === 'Full') {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+         // console.log('values')
+          //console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels8i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData8i = [{data: this.distanceArray, label:'8 Iron distances in meters'}];
+
+
+
+    });
+
+    ///
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === '9I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+          //console.log('values')
+          //console.log(i.$key + ':: ' + i.shotDistance);
+          //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
+          this.barChartLabels9i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartData9i = [{data: this.distanceArray, label:'9 Iron distances in meters'}];
+
+
+
+    });
+
+    //////////////////////////////
+
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        //&& i.swingLength === 'full'
+        if (i.club === 'SW' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+
+          const year = i.$key.slice(0, 4);
+          const month = i.$key.slice(5, 7);
+          const day = i.$key.slice(8, 10);
+          const hour = i.$key.slice(11, 13);
+          const min = i.$key.slice(14, 16);
+          const second = i.$key.slice(17, 19);
+          const totalTime = year + month + day + hour + min + second;
+          //console.log('values')
+          //console.log(i.$key + ':: ' + i.shotDistance);
+
+          this.barChartLabelssw.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.distanceArray.push(parseFloat(i.shotDistance));
+
+
+        }
+      }
+
+      this.barChartDatasw = [{data: this.distanceArray, label:'Sand Wedge distances in meters'}];
+
+
+
+    });
+
+
+
   }
+
+
 
   getUser() {
     const userId = this.user.uid;
     const path = `/Users/${userId}`;
     return this.db.object(path);
+  }
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
   }
 
 

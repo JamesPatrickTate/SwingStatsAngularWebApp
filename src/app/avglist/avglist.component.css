@@ -24,3 +24,47 @@
 
   padding: 20px;
 }
+.Shot-list-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-conatiner {
+  /*padding-top: 100px;*/
+  display: flex;
+  flex-direction: column;
+
+  flex-shrink: 0;
+}
+
+
+.graphing-heading {
+  padding-top: 100px;
+
+}
+
+.graphs{
+
+  /*padding: 50px ;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row ;
+  flex-basis: min-content;
+
+}
+.line-graph{
+  margin: auto;
+  left: 50%;
+  padding: auto;
+
+
+
+}
+/*.g{*/
+  /*border: 40px;*/
+  /*padding-top: 50px;*/
+  /*height: 150px;*/
+/*}*/
+
+
+
