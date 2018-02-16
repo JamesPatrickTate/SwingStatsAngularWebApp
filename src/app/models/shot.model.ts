@@ -10,5 +10,6 @@ export class ShotMod {
   gsr?: string;
   club?: string;
   swingLength?: string;
-
+  golfCourseAddress?: string;
+  email?: string;
 }

@@ -11,7 +11,7 @@ import {ChatMessage} from '../models/chat-message.model';
 })
 export class ShotComponent implements OnInit {
 
- 
+
 
   @Input() SHOT: ShotMod;
   $key?: string;
@@ -25,6 +25,9 @@ export class ShotComponent implements OnInit {
   gsr?: string;
   club?: string;
   swingLength?: string;
+  golfCourseAddress?: string;
+  weather?: String;
+  datum: Date;
 
   constructor(private authService: AuthService) {
     this.club = "temp value";
@@ -41,8 +44,13 @@ export class ShotComponent implements OnInit {
     this.swingLength = SHOT.swingLength;
     this.shotVelocity = SHOT.shotVelocity;
     this.gsr = SHOT.gsr;
-    
-  }
+    this.golfCourseAddress = SHOT.golfCourseAddress;
+    //this.weather = http://history.openweathermap.org/data/2.5/history/city?lat={lat}&lon={lon}&type=hour&start={start}&end={end};
 
+  }
+   toTimestamp(year,month,day,hour,minute,second){
+    this.datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
+    return this.datum.getTime()/ 1000;
+  }
 
 }

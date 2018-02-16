@@ -3,26 +3,26 @@
   <div id="heading"><a routerLink="/">SwingStats</a></div>
   <div class="pageLinks">
     <span>
-      <a [routerLink]="['../chat']" class = "r">Message Board</a>
+      <a [routerLink]="['../chat']" class = "r" name="messageBoard">Message Board</a>
     </span><span>
-      <a [routerLink]="['../dashboard']" class = "r">Shots</a>
+      <a [routerLink]="['../dashboard']" class = "r" name="shots">Shots</a>
     </span><span>
-      <a [routerLink]="['../avglist']"class = "r">Statistics</a>
+      <a [routerLink]="['../avglist']"class = "r" name="stats">Statistics</a>
     </span>
   </div>
   <div class="links">
 
     <span>
-      <a *ngIf="!(user|async)?.uid" href="#" (click)="login()">Login</a>
+      <a id="loginBut" *ngIf="!(user|async)?.uid" href="#" (click)="login()">Login</a>
     </span>
     <span>
-      <a *ngIf="!(user|async)?.uid" routerLink="/signup">Sign Up</a>
+      <a id="signUp" *ngIf="!(user|async)?.uid" routerLink="/signup">Sign Up</a>
     </span>
     <span>
       <span id="userEmail" *ngIf="(user|async)?.uid">Hello, {{userEmail}}</span>
     </span>
     <span>
-      <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>
+      <a id="lob" *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>
     </span>
   </div>
 </div>

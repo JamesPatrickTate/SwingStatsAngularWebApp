@@ -31,7 +31,7 @@ export class AvgshotComponent implements OnInit {
   userName: string;
   userId: any;
   shotArray: ShotMod[];
-
+  owndriverLongest= 0;
   driverlongest = 0;
   woodlongest = 0;
   fivelongest = 0;
@@ -83,13 +83,23 @@ export class AvgshotComponent implements OnInit {
   dates: any[];
   distanceArray: Array<number>;
 
+
+  userList: FirebaseListObservable<User[]>;
+  allShots: any;
+  userLongestDrive: Array<string>;
+  data: string;
+  count: number;
+
+
+
   constructor(private ss: ShotsService, private afAuth: AngularFireAuth,
-              private db: AngularFireDatabase) {
+              private db: AngularFireDatabase, private cs: ChatService) {
 
 
 
     this.distanceArray = [0];
     this.dates = [0];
+    this.userLongestDrive = [''];
     // this.shots = this.ss.getShots();
     this.shots = this.ss.getShotsNoParams();
 
@@ -117,6 +127,16 @@ export class AvgshotComponent implements OnInit {
 
   ngOnInit() {
 
+    this.afAuth.authState.subscribe(auth => {
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+
+      this.getUser().subscribe(a => {
+        this.userName = a.displayName;
+      });
+    });
+
 
 
     // this.shots = this.ss.getShots();
@@ -138,7 +158,8 @@ export class AvgshotComponent implements OnInit {
 
       }
 
-      this.driverlongest = Math.floor(this.driverlongest * 100) / 100;
+      this.owndriverLongest = Math.floor(this.driverlongest * 100) / 100;
+      //this.driverlongest = Math.floor(this.driverlongest * 100) / 100;
 
 
       this.temp = this.totalDistance / this.counter;
@@ -769,28 +790,40 @@ export class AvgshotComponent implements OnInit {
     });
 
 
+    ///////////////// top long shots ///////////////
 
-
-
-  } //end init
-
-
-
-
-
-
-
+     this.count = 0;
+     this.driverlongest = 0;
+    this.allShots = this.ss.getAllShots();
+    this.allShots.subscribe(result => {
+          this.driverlongest = 0;
+          this.data = 'temp';
+          //////////////////// LONGEST SHOT FOR CURRENT USER //////////////////
+          do {
+        Object.values(result[this.count]).forEach( (i) => {
+          if (i.club === 'D' && parseFloat(i.shotDistance) > 0) {
+            if (parseFloat(i.shotDistance) > this.driverlongest) {
+              this.driverlongest = parseFloat(i.shotDistance);
+              this.userId = i.$key;
+            }
+        }});
+            this.data = result[this.count].$key + ' ' + this.driverlongest;
+            this.userLongestDrive.push(this.data);
+            this.count++;
+            this.driverlongest = 0;
+          } while (this.count < result.length); // END DO WHILE
+      if(this.count === result.length ){
+        console.log(this.userLongestDrive);
+      }
+    });
+  } // end init
+  getUser() {
+    const userId = this.user.uid;
+    const path = `/Users/${userId}`;
+    return this.db.object(path);
+  }
 }
 
 
 
 
-
-// clubs.add("D");
-//         clubs.add("3W");
-//         clubs.add("5I");
-//         clubs.add("6I");
-//         clubs.add("7I");
-//         clubs.add("8I");
-//         clubs.add("9I");
-//         clubs.add("SW");

@@ -26,40 +26,41 @@ export class ShotsService {
   shot: ShotMod;
   userID: any;
   shotsPath: string;
+  allshots: string;
   constructor( private db: AngularFireDatabase, private authService: AuthService) {
     authService.authUser().subscribe(user => {
 
       this.userID = user.uid;
       this.shotsPath = 'shot/' + this.userID;
+      this.allshots = 'shot/';
       this.shots = db.list(this.shotsPath);
-      console.log('use:: ' + this.shotsPath);
+
+
     });
   }
 
   getShots(start, end): FirebaseListObservable<ShotMod[]> {
-  //getShots(start, end): FirebaseListObservable<ShotMod[]> {
 
-   // return this.shots;
-   console.log(' service start: ' + start);
-   console.log('end: ' + end);
-    return this.db.list('shot/k6QRNaAR5fSl12k6qSHOApHL6Mg2', {
+
+
+
+    return this.db.list( this.shotsPath, {
         query: {
           orderByChild: 'club',
-          limitToFirst: 10,
+          limitToFirst: 25,
           startAt: start,
           endAt: end
       }
     });
   }
   getShotsNoParams(): FirebaseListObservable<ShotMod[]> {
-    // return this.shots;
-    console.log("getShots path " + this.shotsPath);
-    return this.db.list('shot/k6QRNaAR5fSl12k6qSHOApHL6Mg2', {
-      //return this.db.list(, {
+
+    return this.db.list(this.shotsPath, {
       query: {
         query: {
 
-          limitToLast: 25,
+          limitToLast: 100, //test 100n
+
           orderByKey: true
 
 
@@ -68,6 +69,19 @@ export class ShotsService {
     });
   }
 
+  getAllShots(): FirebaseListObservable<ShotMod[]> {
+
+    return this.db.list(this.allshots, {
+      query: {
+        query: {
+
+          //limitToLast: 100, //test 100n
+
+          orderByKey: true
 
 
+        }
+      }
+    });
+  }
 }

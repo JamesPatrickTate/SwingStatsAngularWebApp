@@ -1,16 +1,23 @@
 <div class="avg-max">
   <div class="max">
-  <h4 class="max-header">Max Distances</h4>
+  <h4 class="max-header" id="MD">Max Distances</h4>
     <div class="floating-box2">
-      <table class="averages">
 
+      <div class="feed">
+        Top Five Swing Stats Drives
+        <div *ngFor="let longShot of userLongestDrive" class="message">
+           {{longShot}}
+        </div>
+      </div>
+      <table class="averages">
+        {{userName}} Your Longest Shots
         <tr>
           <td>Driver</td>
-          <td>{{ driverlongest }}</td>
+          <td>{{ owndriverLongest }}</td>
           <td>3 wood</td>
           <td>{{ woodlongest }}</td>
           <td>5 iron</td>
-          <td>{{ fivelongest }}</td>
+          <td name="longFive">{{ fivelongest }}</td>
           <td>6 iron</td>
           <td>{{ sixlongest }}</td>
           <td>7 iron</td>
@@ -54,7 +61,7 @@
       <tr>
         <td>5 iron</td>
         <td>Full</td>
-        <td>{{ fiveAverage }}</td>
+        <td  name="fiveAverge">{{ fiveAverage }}</td>
       </tr>
       <tr>
         <td>6 iron</td>

@@ -32,3 +32,6 @@ To create component => ng g c component-name
 to create service => ng g s service-name eg auth
 
 Login details for testing 
+
+weather api key:
+acd069c689dcab6dd5f89d4425a2045c
