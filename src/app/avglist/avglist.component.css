@@ -1,4 +1,9 @@
 
+
+html, body{
+  padding: 0;
+  margin: 0;
+}
 .stats-container{
   width: 100%;
 
@@ -34,16 +39,21 @@
   display: flex;
   flex-direction: column;
 
+
   flex-shrink: 0;
 }
 
 
 .graphing-heading {
-  padding-top: 100px;
+  padding-top: 50px;
+  height: max-content;
 
 }
 
 .graphs{
+
+  margin:0 auto;
+  padding:0;
 
   /*padding: 50px ;*/
   display: flex;

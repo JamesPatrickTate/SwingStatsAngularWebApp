@@ -12,4 +12,6 @@ export class ShotMod {
   swingLength?: string;
   golfCourseAddress?: string;
   email?: string;
+  heartRatePreShot?: string;
+  skinTemp?: string;
 }

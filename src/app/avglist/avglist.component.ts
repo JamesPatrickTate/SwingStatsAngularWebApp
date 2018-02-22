@@ -27,6 +27,7 @@ export class AvglistComponent implements OnInit {
   distanceArray8: Array<number>;
   distanceArray9: Array<number>;
   distanceArraysw: Array<number>;
+  // gsr mesurements per shot
   stressArrayD: Array<number>;
   stressArrayW: Array<number>;
   stressArray5: Array<number>;
@@ -35,6 +36,34 @@ export class AvglistComponent implements OnInit {
   stressArray8: Array<number>;
   stressArray9: Array<number>;
   stressArraysw: Array<number>;
+  // skin temperature per shot
+  sTempArrayD: Array<number>;
+  sTempArrayW: Array<number>;
+  sTempArray5: Array<number>;
+  sTempArray6: Array<number>;
+  sTempArray7: Array<number>;
+  sTempArray8: Array<number>;
+  sTempArray9: Array<number>;
+  sTempArraysw: Array<number>;
+  // heart rate per shot
+  HRArrayD: Array<number>;
+  HRArrayW: Array<number>;
+  HRArray5: Array<number>;
+  HRArray6: Array<number>;
+  HRArray7: Array<number>;
+  HRArray8: Array<number>;
+  HRArray9: Array<number>;
+  HRArraysw: Array<number>;
+  //Wrist speed
+  wristSpeedArrayD: Array<number>;
+  wristSpeedArrayW: Array<number>;
+  wristSpeedArray5: Array<number>;
+  wristSpeedArray6: Array<number>;
+  wristSpeedArray7: Array<number>;
+  wristSpeedArray8: Array<number>;
+  wristSpeedArray9: Array<number>;
+  wristSpeedArraysw: Array<number>;
+
   shots: FirebaseListObservable<ShotMod[]>;
   allShots: any;
   s: ShotMod[];
@@ -57,7 +86,10 @@ export class AvglistComponent implements OnInit {
 
   public barChartData:any[]= [
     {data: [0], label: ' '},
-    {data: [0], label: ' '}
+    {data: [0], label: ' '},
+    {data: [0], label: ' '},
+    {data: [0], label: ' '},
+    {data: [0], label: ' '},
 
   ];
   barChartLabels:string[] = ['']; //;
@@ -129,6 +161,9 @@ export class AvglistComponent implements OnInit {
     this.distanceArraysw = [0];
     this.userLongestDrive = [''];
     this.stressArrayD = [0];
+    this.HRArrayD = [0];
+    this.sTempArrayD = [0];
+    this.wristSpeedArrayD = [0];
 
     this.dates = [0];
     console.log('In Constructor');
@@ -157,7 +192,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
 
-        if (parseFloat(i.club === 'D' && i.shotDistance) > 0) {
+        if (parseFloat(i.club === 'D' && i.shotDistance && i.skinTemp) > 0) {
 
           console.log(i.gsr);
           const year = i.$key.slice(0, 4);
@@ -170,10 +205,16 @@ export class AvglistComponent implements OnInit {
           this.barChartLabels.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
           this.distanceArray.push(parseFloat(i.shotDistance));
           this.stressArrayD.push(parseFloat(i.gsr)/10000);
+          this.HRArrayD.push(parseFloat(i.heartRatePreShot));
+          this.sTempArrayD.push(parseFloat(i.skinTemp));
+          this.wristSpeedArrayD.push(parseFloat(i.shotVelocity));
         }
       }
       this.barChartData = [{data: this.distanceArray, label:'Driver distances in meters'},
-                            {data: this.stressArrayD, label:'Stress level in ohm/10000', type: 'line'}];
+                           {data: this.wristSpeedArrayD, label:'speed of wrist in ms', type: 'line'},
+                            {data: this.stressArrayD, label:'GSR level in ohm/10000', type: 'line'},
+                            {data: this.HRArrayD, label:'Heart rate in BPM', type: 'line'},
+                            {data: this.sTempArrayD, label:'Skin tempemp in Celsius', type: 'line'}];
     });
 
 
@@ -308,7 +349,7 @@ export class AvglistComponent implements OnInit {
       }
 
       this.barChartData7i = [{data: this.distanceArray7, label:'7 Iron distances in meters'},
-        {data: this.stressArray7, label:'Stress level in ohm/10000', type: 'line'};
+        {data: this.stressArray7, label:'Stress level in ohm/10000', type: 'line'}];
 
 
 
