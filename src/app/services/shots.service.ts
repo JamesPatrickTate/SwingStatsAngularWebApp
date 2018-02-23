@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable 
 
 
 import {ShotMod} from '../models/shot.model';
+import {StressModel} from "../models/Stress.model";
 
 
 
@@ -23,10 +24,12 @@ export class ShotsService {
   totalDistance: number=0;
   finalAverage: number = 0;
   shots: FirebaseListObservable<any[]>;
+  stresses: FirebaseListObservable<any[]>;
   shot: ShotMod;
   userID: any;
   shotsPath: string;
   allshots: string;
+  stressPath: string;
   constructor( private db: AngularFireDatabase, private authService: AuthService) {
     authService.authUser().subscribe(user => {
 
@@ -34,6 +37,8 @@ export class ShotsService {
       this.shotsPath = 'shot/' + this.userID;
       this.allshots = 'shot/';
       this.shots = db.list(this.shotsPath);
+      this.stressPath = 'round/' + this.userID;
+      this.stresses = db.list(this.shotsPath);
 
 
     });
@@ -75,7 +80,24 @@ export class ShotsService {
       query: {
         query: {
 
-          //limitToLast: 100, //test 100n
+          limitToFirst: 100, //test 100n
+
+          orderByKey: true
+
+
+        }
+      }
+    });
+  }
+
+
+  getStressNoParams(): FirebaseListObservable<StressModel[]> {
+
+    return this.db.list(this.stressPath, {
+      query: {
+        query: {
+
+          limitToLast: 100, //test 100n
 
           orderByKey: true
 

@@ -14,4 +14,5 @@ export class ShotMod {
   email?: string;
   heartRatePreShot?: string;
   skinTemp?: string;
+  day?: string;
 }

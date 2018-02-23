@@ -9,10 +9,43 @@
    <p class="clubName">Club: {{club}}</p>
    <p>Distance: {{shotDistance}} m</p>
    <p>Swing Length: {{swingLength}} </p>
-   <p>Swing Velocity: {{swingVelocity}} m/s</p>
+   <p>Swing Velocity: {{shotVelocity}} m/s</p>
    <p>Average:  {{average}}</p>
   <p>Address:  {{golfCourseAddress}}</p>
+  <p><b>Stress:</b> hear rate: {{heartRateReading}}, skin temperature: {{skinTempReding}}, GSR: {{gsr}}</p>
 </div>
+  <div class="col-md-6">
+  <div style="display: block">
+
+    <h2>Shot Data</h2>
+
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  </div>
+  <div class="col-md-6">
+    <div style="display: block;">
+      <h2>Round Stress Data</h2>
+      <canvas baseChart width="400" height="400"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+
+
+
 
 
 

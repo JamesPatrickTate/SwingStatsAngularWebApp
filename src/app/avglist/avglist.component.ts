@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database-deprecated";
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from "firebase/app";
@@ -6,6 +6,7 @@ import {ShotMod} from "../models/shot.model";
 import {ShotsService} from "../services/shots.service";
 import {ChatService} from "../services/chat.service";
 import {User} from "../models/user.model";
+
 //https://valor-software.com/ng2-charts/
 @Component({
   selector: 'app-avglist',
@@ -74,17 +75,16 @@ export class AvglistComponent implements OnInit {
   data: string;
 
 
-
   ///// chart declarations////
-  public barChartOptions:any = {
+  public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
 
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
 
-  public barChartData:any[]= [
+  public barChartData: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '},
     {data: [0], label: ' '},
@@ -92,58 +92,56 @@ export class AvglistComponent implements OnInit {
     {data: [0], label: ' '},
 
   ];
-  barChartLabels:string[] = ['']; //;
+  barChartLabels: string[] = ['']; //;
 
-  public barChartData3w:any[]= [
+  public barChartData3w: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels3w:string[] = ['']; //;
+  barChartLabels3w: string[] = ['']; //;
 
-  public barChartData5i:any[]= [
+  public barChartData5i: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels5i:string[] = ['']; //;
+  barChartLabels5i: string[] = ['']; //;
 
-  public barChartData6i:any[]= [
+  public barChartData6i: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels6i:string[] = ['']; //;
+  barChartLabels6i: string[] = ['']; //;
 
-  public barChartData7i:any[]= [
+  public barChartData7i: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels7i:string[] = ['']; //;
+  barChartLabels7i: string[] = ['']; //;
 
-  public barChartData8i:any[]= [
+  public barChartData8i: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels8i:string[] = ['']; //;
+  barChartLabels8i: string[] = ['']; //;
 
-  public barChartData9i:any[]= [
+  public barChartData9i: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabels9i:string[] = ['']; //;
+  barChartLabels9i: string[] = ['']; //;
 
-  public barChartDatasw:any[]= [
+  public barChartDatasw: any[] = [
     {data: [0], label: ' '},
     {data: [0], label: ' '}
 
   ];
-  barChartLabelssw:string[] = ['']; //;
-
-
+  barChartLabelssw: string[] = ['']; //;
 
 
   /////////////////////////
@@ -170,7 +168,6 @@ export class AvglistComponent implements OnInit {
 
 
   }
-
 
 
   ngOnInit() {
@@ -202,19 +199,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-          this.barChartLabels.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray.push(parseFloat(i.shotDistance));
-          this.stressArrayD.push(parseFloat(i.gsr)/10000);
+          this.stressArrayD.push(parseFloat(i.gsr));
           this.HRArrayD.push(parseFloat(i.heartRatePreShot));
           this.sTempArrayD.push(parseFloat(i.skinTemp));
           this.wristSpeedArrayD.push(parseFloat(i.shotVelocity));
         }
       }
-      this.barChartData = [{data: this.distanceArray, label:'Driver distances in meters'},
-                           {data: this.wristSpeedArrayD, label:'speed of wrist in ms', type: 'line'},
-                            {data: this.stressArrayD, label:'GSR level in ohm/10000', type: 'line'},
-                            {data: this.HRArrayD, label:'Heart rate in BPM', type: 'line'},
-                            {data: this.sTempArrayD, label:'Skin tempemp in Celsius', type: 'line'}];
+      this.barChartData = [{data: this.distanceArray, label: 'Driver distances in meters'},
+        {data: this.wristSpeedArrayD, label: 'speed of wrist in ms', type: 'line'},
+        {data: this.stressArrayD, label: 'GSR level in ohm/10000', type: 'line'},
+        {data: this.HRArrayD, label: 'Heart rate in BPM', type: 'line'},
+        {data: this.sTempArrayD, label: 'Skin tempemp in Celsius', type: 'line'}];
     });
 
 
@@ -223,10 +220,7 @@ export class AvglistComponent implements OnInit {
     this.shots.subscribe(result => {
 
       for (const i of result) {
-
-      //&& i.swingLength === 'full'
-        if (i.club === '5I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
-
+        if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
           const day = i.$key.slice(8, 10);
@@ -235,20 +229,17 @@ export class AvglistComponent implements OnInit {
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
           console.log('values');
-         console.log(i.$key + ':: ' + i.shotDistance);
+          console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels5i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels5i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray5.push(parseFloat(i.shotDistance));
-          this.stressArray5.push(parseFloat(i.gsr)/10000);
-
-
+          this.stressArray5.push(parseFloat(i.gsr) / 10000);
         }
       }
       //console.log(this.distanceArray);
 
-      this.barChartData5i = [{data: this.distanceArray5, label:'5 Iron distances in meters'},
-        {data: this.stressArray5, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData5i = [{data: this.distanceArray5, label: '5 Iron distances in meters'},
+        {data: this.stressArray5, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -259,7 +250,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '3W' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+        if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -268,20 +259,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-         // console.log('values')
-         // console.log(i.$key + ':: ' + i.shotDistance);
+          // console.log('values')
+          // console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels3w.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels3w.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArrayW.push(parseFloat(i.shotDistance));
-          this.stressArrayW.push(parseFloat(i.gsr)/10000);
+          this.stressArrayW.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartData3w = [{data: this.distanceArrayW, label:'3 Wood distances in meters'},
-        {data: this.stressArrayW, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData3w = [{data: this.distanceArrayW, label: '3 Wood distances in meters'},
+        {data: this.stressArrayW, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -293,7 +283,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '6I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+        if (i.club === '6I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -302,20 +292,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-         // console.log('values')
-         // console.log(i.$key + ':: ' + i.shotDistance);
+          // console.log('values')
+          // console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels6i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels6i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray6.push(parseFloat(i.shotDistance));
-          this.stressArray6.push(parseFloat(i.gsr)/10000);
+          this.stressArray6.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartData6i = [{data: this.distanceArray6, label:'6 Iron distances in meters'},
-        {data: this.stressArray6, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData6i = [{data: this.distanceArray6, label: '6 Iron distances in meters'},
+        {data: this.stressArray6, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -328,7 +317,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '7I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '7I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -337,20 +326,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-         // console.log('values')
+          // console.log('values')
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels7i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels7i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray7.push(parseFloat(i.shotDistance));
-          this.stressArray7.push(parseFloat(i.gsr)/10000);
+          this.stressArray7.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartData7i = [{data: this.distanceArray7, label:'7 Iron distances in meters'},
-        {data: this.stressArray7, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData7i = [{data: this.distanceArray7, label: '7 Iron distances in meters'},
+        {data: this.stressArray7, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -362,7 +350,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '8I' && parseFloat( i.shotDistance) > 0  && i.swingLength === 'Full') {
+        if (i.club === '8I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -371,20 +359,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-         // console.log('values')
+          // console.log('values')
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels8i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels8i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray8.push(parseFloat(i.shotDistance));
-          this.stressArray8.push(parseFloat(i.gsr)/10000);
+          this.stressArray8.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartData8i = [{data: this.distanceArray8, label:'8 Iron distances in meters'},
-        {data: this.stressArray8, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData8i = [{data: this.distanceArray8, label: '8 Iron distances in meters'},
+        {data: this.stressArray8, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -394,7 +381,7 @@ export class AvglistComponent implements OnInit {
       this.distanceArray = [];
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '9I' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '9I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -403,21 +390,19 @@ export class AvglistComponent implements OnInit {
           const min = i.$key.slice(14, 16);
           const second = i.$key.slice(17, 19);
           const totalTime = year + month + day + hour + min + second;
-         // console.log('values');
+          // console.log('values');
           //console.log(i.$key + ':: ' + i.shotDistance);
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
-          this.barChartLabels9i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabels9i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray9.push(parseFloat(i.shotDistance));
-          this.stressArray9.push(parseFloat(i.gsr)/10000);
-
+          this.stressArray9.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartData9i = [{data: this.distanceArray9, label:'9 Iron distances in meters'},
-        {data: this.stressArray9, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartData9i = [{data: this.distanceArray9, label: '9 Iron distances in meters'},
+        {data: this.stressArray9, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -429,7 +414,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //console.log("tester   "+result);
-        if (i.club === 'SW' && parseFloat( i.shotDistance) > 0 && i.swingLength === 'Full' ) {
+        if (i.club === 'SW' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -441,17 +426,16 @@ export class AvglistComponent implements OnInit {
           //console.log('values')
           //console.log(i.$key + ':: ' + i.shotDistance);
 
-          this.barChartLabelssw.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' +second);
+          this.barChartLabelssw.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArraysw.push(parseFloat(i.shotDistance));
-          this.stressArraysw.push(parseFloat(i.gsr)/10000);
+          this.stressArraysw.push(parseFloat(i.gsr) / 10000);
 
 
         }
       }
 
-      this.barChartDatasw = [{data: this.distanceArraysw, label:'Sand Wedge distances in meters'},
-        {data: this.stressArraysw, label:'Stress level in ohm/10000', type: 'line'}];
-
+      this.barChartDatasw = [{data: this.distanceArraysw, label: 'Sand Wedge distances in meters'},
+        {data: this.stressArraysw, label: 'Stress level in ohm/10000', type: 'line'}];
 
 
     });
@@ -493,9 +477,7 @@ export class AvglistComponent implements OnInit {
     // });
 
 
-
   }
-
 
 
   getUser() {
@@ -512,7 +494,6 @@ export class AvglistComponent implements OnInit {
   public chartHovered(e: any): void {
     console.log(e);
   }
-
 
 
 }
