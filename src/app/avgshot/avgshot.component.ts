@@ -804,16 +804,16 @@ export class AvgshotComponent implements OnInit {
           if (i.club === 'D' && parseFloat(i.shotDistance) > 0) {
             if (parseFloat(i.shotDistance) > this.driverlongest) {
               this.driverlongest = parseFloat(i.shotDistance);
-              this.userId = i.$key;
+             this.userId = i.email;
             }
         }});
-            this.data = result[this.count].$key + ' ' + this.driverlongest;
+            this.data = this.userId + ' ' + this.driverlongest.toFixed(2);
             this.userLongestDrive.push(this.data);
             this.count++;
             this.driverlongest = 0;
           } while (this.count < result.length); // END DO WHILE
-      if(this.count === result.length ){
-        console.log(this.userLongestDrive);
+      if (this.count === result.length ){
+        console.log("Longest " + this.userLongestDrive);
       }
     });
   } // end init

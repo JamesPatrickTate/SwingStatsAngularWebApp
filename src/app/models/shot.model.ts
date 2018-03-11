@@ -15,4 +15,16 @@ export class ShotMod {
   heartRatePreShot?: string;
   skinTemp?: string;
   day?: string;
+  averageDistance?: string;
+  averageGSR?: string;
+  averageHeartRate?: string;
+  averageSkinTemp?: string;
+  averageWristSpeed?: string;
+  differenceDistance?: string;
+  differenceGSR?: string;
+  differenceHeartRate?: string;
+  differenceSkinTemp?: string;
+  differenceWristSpeed?: string;
+  shotQuality?: any;
+
 }

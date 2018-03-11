@@ -5,14 +5,13 @@
       <agm-marker [latitude]="endLatitude" [longitude]="endLongitude"></agm-marker>
     </agm-map>
 <div class="shot-data">
+  <p>Shot Quality: <b>                           {{shotQuality}}</b></p>
    <p>Time and Date of Shot: {{$key}}</p>
-   <p class="clubName">Club: {{club}}</p>
-   <p>Distance: {{shotDistance}} m</p>
-   <p>Swing Length: {{swingLength}} </p>
-   <p>Swing Velocity: {{shotVelocity}} m/s</p>
-   <p>Average:  {{average}}</p>
-  <p>Address:  {{golfCourseAddress}}</p>
-  <p><b>Stress:</b> hear rate: {{heartRateReading}}, skin temperature: {{skinTempReding}}, GSR: {{gsr}}</p>
+   <p class="clubName">Club and swing length:<b> {{club}} & {{swingLength}}</b></p>
+  <p>Distance:                                <b>{{shotDistance}}m (AVG: {{averageDistance}} , DIFF:{{differenceDistance}})</b></p>
+   <p>Swing Velocity: {{shotVelocity}} m/s  (AVG: {{averageWristSpeed}} , DIFF:{{differenceWristSpeed}})</p>
+  <p>Golf Course:  {{golfCourseAddress}}</p>
+  <p><b>Stress:</b> hear rate: {{heartRateReading}} (AVG: {{averageHeartRate}} , DIFF:{{differenceHeartRate}}), skin temperature: {{skinTempReding}} (AVG: {{averageSkinTemp}} , DIFF:{{differenceSkinTemp}}), GSR: {{gsr}} (AVG: {{averageGSR}} , DIFF:{{differenceGSR}})</p>
 </div>
   <div class="col-md-6">
   <div style="display: block">
@@ -26,23 +25,24 @@
             [legend]="barChartLegend"
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+            (chartClick)="chartClicked($event)">
+    </canvas>
   </div>
   </div>
-  <div class="col-md-6">
-    <div style="display: block;">
-      <h2>Round Stress Data</h2>
-      <canvas baseChart width="400" height="400"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
+  <!--<div class="col-md-6">-->
+    <!--<div style="display: block;">-->
+      <!--<h2>Round Stress Data</h2>-->
+      <!--<canvas baseChart width="400" height="400"-->
+              <!--[datasets]="lineChartData"-->
+              <!--[labels]="lineChartLabels"-->
+              <!--[options]="lineChartOptions"-->
+              <!--[colors]="lineChartColors"-->
+              <!--[legend]="lineChartLegend"-->
+              <!--[chartType]="lineChartType"-->
+              <!--(chartHover)="chartHovered($event)"-->
+              <!--(chartClick)="chartClicked($event)"></canvas>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
 

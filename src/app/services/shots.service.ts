@@ -45,10 +45,6 @@ export class ShotsService {
   }
 
   getShots(start, end): FirebaseListObservable<ShotMod[]> {
-
-
-
-
     return this.db.list( this.shotsPath, {
         query: {
           orderByChild: 'club',
@@ -103,6 +99,17 @@ export class ShotsService {
 
 
         }
+      }
+    });
+  }
+
+  getShotsDATE(start, end): FirebaseListObservable<ShotMod[]> {
+    return this.db.list( this.shotsPath, {
+      query: {
+        orderByChild: 'day',
+        limitToFirst: 25,
+        startAt: start,
+        endAt: end
       }
     });
   }

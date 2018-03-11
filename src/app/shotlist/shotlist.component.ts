@@ -23,7 +23,7 @@ import { Subject } from 'rxjs/Subject'
 })
 export class ShotlistComponent implements OnInit {
   static userID: string;
-  //shots: FirebaseListObservable<ShotMod[]>;
+  //
   shots;
   test: string;
   path: string;
@@ -33,8 +33,8 @@ export class ShotlistComponent implements OnInit {
   totalDistance = 0;
   finalAverage = 0;
   searchShots;
-  startAt = new Subject()
-  endAt = new Subject()
+  startAt = new Subject();
+  endAt = new Subject();
 
 
   constructor(private af: AngularFireDatabase,
@@ -77,8 +77,9 @@ export class ShotlistComponent implements OnInit {
     // });
     console.log('start: ' + this.startAt + '/n' + 'end: ' + this.endAt);
     //this.ss.getShots('5I', '').subscribe(shots => this.shots = shots);
+
     this.ss.getShots(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
-    this.ss.getShots(this.startAt, this.endAt).subscribe(shots =>{console.log('shots ' + this.shots)});
+    this.ss.getShotsDATE(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
 
 
   }
