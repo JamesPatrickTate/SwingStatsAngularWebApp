@@ -147,7 +147,7 @@ export class ShotComponent implements OnInit {
     this.gsr = SHOT.gsr;
     this.shotDay = SHOT.day;
     this.skinTempReding = parseFloat(SHOT.skinTemp).toFixed(3);
-    this.heartRateReading = SHOT.heartRatePreShot;
+    this.heartRateReading = parseFloat(SHOT.heartRatePreShot).toFixed(3);
     this.wrist = SHOT.shotVelocity;
     this.shotQuality = SHOT.shotQuality;
     this.averageDistance = SHOT.averageDistance;
@@ -163,7 +163,7 @@ export class ShotComponent implements OnInit {
     //console.log('differenceHeartRate' + this.differenceHeartRate);
     this.wristSpeedArrayD[0] = parseFloat(this.wrist);
      this.stressArrayD[0] = parseFloat(this.gsr) / 1000;
-     this.HRArrayD[0] = parseFloat(this.heartRateReading);
+     this.HRArrayD[0] = parseFloat(this.heartRateReading)
     this.sTempArrayD[0] = parseFloat(this.skinTempReding);
     this.distanceArray[0] = parseFloat(this.shotDistance);
     this.golfCourseAddress = SHOT.golfCourseAddress;

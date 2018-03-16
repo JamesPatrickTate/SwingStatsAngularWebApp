@@ -6,62 +6,69 @@
 .av-header{
   padding: 5%;
 }
-.max-header{
-  /*padding: 2%;*/
+.max-header {
+  padding: 0px;
+
 }
+
+.maxDistances{
+
+
+}
+ol {
+  background: rgba(218, 187, 29, 0.7);
+  padding: 20px;
+  width: 100%;
+}
+ol li {
+  background: rgba(53, 255, 122, 0.7);
+  padding: 5px;
+  margin-left: 35px;
+
+}
+
 .avg-tables{
-  /*border: 30px;*/
-  /*padding: 30px;*/
-  /*width: 100%;*/
-  /*display: block;*/
+  background: rgba(218, 187, 29, 0.7);
+  width: 100%;}
 
-
-}
-.floating-box2 {
-
-
-  margin: auto;
-  /*padding: 30px;*/
-
-  /*width: 150px;*/
-  /*height: 75px;*/
-  /*margin: 10px;*/
-  /*border: 3px solid #73AD21;*/
+.floating-box{
   display: flex;
-  height: auto;
-  width: fit-content;
-  /*min-width: 400px;*/
-  border-radius: 5px;
-  align-items:stretch;
-  /*background-color: #eee;*/
-  background:rgba(255,255,255,0.7);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);
-  padding: 1%;
+  flex-direction: row;
+  /*background:rgba(255,255,255,0.7);*/
 }
-.floating-box {
 
-  float: left;
-  /*padding: 30px;*/
+/*.floating-box {*/
 
-  /*width: 150px;*/
-  /*height: 75px;*/
-  /*margin: 10px;*/
-  /*border: 3px solid #73AD21;*/
-  display: flex;
-  height: auto;
-  width: auto;
-  /*min-width: 400px;*/
-  border-radius: 5px;
-  align-items:stretch;
-  /*background-color: #eee;*/
-  background:rgba(255,255,255,0.7);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);
-  padding: 1%;
-}
+  /*!*float: left;*!*/
+
+
+  /*!*width: 150px;*!*/
+  /*!*height: 75px;*!*/
+  /*!*margin: 10px;*!*/
+  /*!*border: 3px solid #73AD21;*!*/
+  /*display: flex;*/
+  /*height: auto;*/
+  /*width: auto;*/
+  /*!*min-width: 400px;*!*/
+  /*border-radius: 5px;*/
+  /*align-items:stretch;*/
+  /*!*background-color: #eee;*!*/
+  /*background:rgba(255,255,255,0.7);*/
+  /*box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);*/
+
+  /*border-left: 5px;*/
+/*}*/
 
 table, th, td {
+  padding-left: 5px;
   border: 1px solid black;
-  border-collapse: collapse;
+  padding-right: 3%;
+  padding-left: 3%;
+  border-left: 5px;
+  background: rgba(53, 255, 122, 0.7);
+
+  /*border: 3px solid #73AD21;*/
+  /*border-collapse: collapse;*/
 
 }
 th, td {
@@ -71,9 +78,12 @@ th, td {
 table#t01 {
   width: 100%;
   background-color: #f1f1c1;
+  padding-left: 10px;
 }
 .averages {
   height: fit-content;
+  border: 3px;
+  padding-left: 3%;
 }
 .maxs{
   height: fit-content;
@@ -86,9 +96,19 @@ table#t01 {
   margin: auto;
   left: 50%;
   height: 400px;
-  width: 80%;
+  width: 20%;
 }
 
 
+#longD{ font-style: italic}
+
+
+#doughnutChart {
+  padding-top: 50px;
+
+}
+.nameOfChart{
+  font-size: 30px;
+}
 
 

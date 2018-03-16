@@ -236,7 +236,8 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
 
-        if (parseFloat(i.club === 'D' && i.shotDistance && i.skinTemp) > 0) {
+        //if (parseFloat(i.club === 'D' && i.shotDistance && i.skinTemp) > 0) {
+        if (i.club === 'D' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           console.log(i.gsr);
           const year = i.$key.slice(0, 4);
@@ -267,7 +268,7 @@ export class AvglistComponent implements OnInit {
     this.shots.subscribe(result => {
 
       for (const i of result) {
-        if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full'&&  parseFloat(i.heartRatePreShot) > 0) {
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
           const day = i.$key.slice(8, 10);
@@ -303,7 +304,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -341,7 +342,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '6I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '6I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -381,7 +382,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '7I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '7I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -420,7 +421,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '8I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '8I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -457,7 +458,7 @@ export class AvglistComponent implements OnInit {
       this.distanceArray = [];
       for (const i of result) {
         //&& i.swingLength === 'full'
-        if (i.club === '9I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === '9I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -497,7 +498,7 @@ export class AvglistComponent implements OnInit {
 
       for (const i of result) {
         //console.log("tester   "+result);
-        if (i.club === 'SW' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
+        if (i.club === 'SW' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);

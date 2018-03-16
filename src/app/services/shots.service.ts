@@ -48,7 +48,7 @@ export class ShotsService {
     return this.db.list( this.shotsPath, {
         query: {
           orderByChild: 'club',
-          limitToFirst: 25,
+          limitTolast: 100,
           startAt: start,
           endAt: end
       }
@@ -93,7 +93,7 @@ export class ShotsService {
       query: {
         query: {
 
-          limitToLast: 100, //test 100n
+          limitToLast: 25, //test 100n
 
           orderByKey: true
 
@@ -107,7 +107,7 @@ export class ShotsService {
     return this.db.list( this.shotsPath, {
       query: {
         orderByChild: 'day',
-        limitToFirst: 25,
+        limitToLast: 25,
         startAt: start,
         endAt: end
       }

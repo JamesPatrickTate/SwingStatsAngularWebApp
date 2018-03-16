@@ -1,48 +1,40 @@
 <div class="avg-max">
+
+
   <div class="max">
-  <h4 class="max-header" id="MD">Max Distances</h4>
-    <div class="floating-box2">
-
-      <div > <!--class="feed"-->
-        Top Swing Stats Drives
-        <div *ngFor="let longShot of userLongestDrive" > <!--class="message"-->
-           {{longShot}}
-        </div>
-      </div>
-      <table class="averages">
-        {{userName}} Your Longest Shots
-        <tr>
-          <td>Driver</td>
-          <td>{{ owndriverLongest }}</td>
-          <td>3 wood</td>
-          <td>{{ woodlongest }}</td>
-          <td>5 iron</td>
-          <td name="longFive">{{ fivelongest }}</td>
-          <td>6 iron</td>
-          <td>{{ sixlongest }}</td>
-          <td>7 iron</td>
-          <td>{{ sevenlongest }}</td>
-          <td>8 iron</td>
-          <td>{{ eigthlongest }}</td>
-          <td>9 iron</td>
-          <td>{{ ninelongest }}</td>
-          <td>SW iron</td>
-          <td>{{ swlongest }}</td>
-
-        <tr>
-      </table>
 
 
+    <div class="maxs">
+
+
+    <div class="maxDistances">
+
+      <h4 class="max-header" id="MD">Longest Distance for each club</h4>
+      <ol>
+        <li><div id="longD">Driver: <b> {{ owndriverLongest }}m </b></div></li>
+        <li>3 Wood:  {{ woodlongest }}m</li>
+        <li>5 Iron:  {{ fivelongest }}m</li>
+        <li>6 Iron:  {{ sixlongest }}m</li>
+        <li>7 Iron:  {{ sevenlongest }}m</li>
+        <li>8 Iron:  {{ eigthlongest }}m</li>
+        <li>9 Iron:  {{ ninelongest }}m</li>
+        <li>SW Iron: {{ swlongest }}m</li>
+
+      </ol>
 
     </div>
   </div>
+  </div>
   <!--average tables-->
   <div class="avg-tables">
-  <h4 class="av-header">Average Club Distance</h4>
+
   <div>
+    <div class="floating-box" >
+      <h4 class="av-header">Average Club & swing distance</h4>
+
     <div class="floating-box">
     <table class="averages">
-      <caption>Full Swings</caption>
+      <caption><h2>Full Swings</h2></caption>
       <tr>
         <th>Club</th>
         <th>Swing</th>
@@ -51,12 +43,12 @@
       <tr>
         <td>Driver</td>
         <td>Full</td>
-        <td>{{ driverAverage }}</td>
+        <td>{{ driverAverage }}m</td>
       </tr>
       <tr>
         <td>3 wood</td>
         <td>Full</td>
-        <td>{{ woodAverage }}</td>
+        <td>{{ woodAverage }}m</td>
       </tr>
       <tr>
         <td>5 iron</td>
@@ -66,27 +58,27 @@
       <tr>
         <td>6 iron</td>
         <td>Full</td>
-        <td>{{ sixAverage }}</td>
+        <td>{{ sixAverage }}m</td>
       </tr>
       <tr>
         <td>7 iron</td>
         <td>Full</td>
-        <td>{{ sevenAverage }}</td>
+        <td>{{ sevenAverage }}m</td>
       </tr>
       <tr>
         <td>8 iron</td>
         <td>Full</td>
-        <td>{{ eigthAverage }}</td>
+        <td>{{ eigthAverage }}m</td>
       </tr>
       <tr>
         <td>9 iron</td>
         <td>Full</td>
-        <td>{{ nineAverage }}</td>
+        <td>{{ nineAverage }}m</td>
       </tr>
       <tr>
         <td>SW iron</td>
         <td>Full</td>
-        <td>{{ swAverage }}</td>
+        <td>{{ swAverage }}m</td>
       </tr>
     </table>
 
@@ -95,7 +87,7 @@
     <div class="floating-box">
 
     <table class="averages">
-      <caption>3/4 Swings</caption>
+      <caption><h2>3/4 Swings</h2></caption>
       <tr>
         <th>Club</th>
         <th>Swing</th>
@@ -109,43 +101,43 @@
       <tr>
         <td>3 wood</td>
         <td>3/4</td>
-        <td>{{ woodthree }}</td>
+        <td>{{ woodthree }}m</td>
       </tr>
       <tr>
         <td>5 iron</td>
         <td>3/4</td>
-        <td>{{ fivethree }}</td>
+        <td>{{ fivethree }}m</td>
       </tr>
       <tr>
         <td>6 iron</td>
         <td>3/4</td>
-        <td>{{ sixthree }}</td>
+        <td>{{ sixthree }}m</td>
       </tr>
       <tr>
         <td>7 iron</td>
         <td>3/4</td>
-        <td>{{ seventhree }}</td>
+        <td>{{ seventhree }}m</td>
       </tr>
       <tr>
         <td>8 iron</td>
         <td>3/4</td>
-        <td>{{ eigththree }}</td>
+        <td>{{ eigththree }}m</td>
       </tr>
       <tr>
         <td>9 iron</td>
         <td>3/4</td>
-        <td>{{ ninethree }}</td>
+        <td>{{ ninethree }}m</td>
       </tr>
       <tr>
         <td>SW iron</td>
         <td>3/4</td>
-        <td>{{ swthree }}</td>
+        <td>{{ swthree }}m</td>
       </tr>
     </table>
     </div>
     <div class="floating-box">
     <table class="averages">
-      <caption>1/2 Swings</caption>
+      <caption><h2>1/2 Swings</h2></caption>
       <tr>
         <th>Club</th>
         <th>Swing</th>
@@ -159,44 +151,44 @@
       <tr>
         <td>3 wood</td>
         <td>1/2</td>
-        <td>{{ woodhalf }}</td>
+        <td>{{ woodhalf }}m</td>
       </tr>
       <tr>
         <td>5 iron</td>
         <td>1/2</td>
-        <td>{{ fivehalf }}</td>
+        <td>{{ fivehalf }}m</td>
       </tr>
       <tr>
         <td>6 iron</td>
         <td>1/2</td>
-        <td>{{ sixhalf }}</td>
+        <td>{{ sixhalf }}m</td>
       </tr>
       <tr>
         <td>7 iron</td>
         <td>1/2</td>
-        <td>{{ sevenhalf }}</td>
+        <td>{{ sevenhalf }}m</td>
       </tr>
       <tr>
         <td>8 iron</td>
         <td>1/2</td>
-        <td>{{ eigthhalf }}</td>
+        <td>{{ eigthhalf }}m</td>
       </tr>
       <tr>
         <td>9 iron</td>
         <td>1/2</td>
-        <td>{{ ninehalf }}</td>
+        <td>{{ ninehalf }}m</td>
       </tr>
       <tr>
         <td>SW iron</td>
         <td>1/2</td>
-        <td>{{ swhalf }}</td>
+        <td>{{ swhalf }}m</td>
       </tr>
     </table>
     </div>
 
     <div class="floating-box">
     <table class="averages">
-      <caption>1/4 Swings</caption>
+      <caption><h2>1/4 Swings</h2></caption>
       <tr>
         <th>Club</th>
         <th>Swing</th>
@@ -210,37 +202,37 @@
       <tr>
         <td>3 wood</td>
         <td>1/4</td>
-        <td>{{ woodquater }}</td>
+        <td>{{ woodquater }}m</td>
       </tr>
       <tr>
         <td>5 iron</td>
         <td>1/4</td>
-        <td>{{ fivequater }}</td>
+        <td>{{ fivequater }}m</td>
       </tr>
       <tr>
         <td>6 iron</td>
         <td>1/4</td>
-        <td>{{ sixquater }}</td>
+        <td>{{ sixquater }}m</td>
       </tr>
       <tr>
         <td>7 iron</td>
         <td>1/4</td>
-        <td>{{ sevenquater }}</td>
+        <td>{{ sevenquater }}m</td>
       </tr>
       <tr>
         <td>8 iron</td>
         <td>1/4</td>
-        <td>{{ eigthquater }}</td>
+        <td>{{ eigthquater }}m</td>
       </tr>
       <tr>
         <td>9 iron</td>
         <td>1/4</td>
-        <td>{{ ninequater }}</td>
+        <td>{{ ninequater }}m</td>
       </tr>
       <tr>
         <td>SW iron</td>
         <td>1/4</td>
-        <td>{{ swquater }}</td>
+        <td>{{ swquater }}m</td>
       </tr>
     </table>
     </div>
@@ -250,26 +242,22 @@
 
   </div>
     <!--end tables-->
+  </div>
 
 
-
-
-
-
-<!--<div class="line-graph">-->
-  <!--<div>-->
-    <!--<div style="display: block">-->
-      <!--<canvas baseChart-->
-              <!--[datasets]="barChartData"-->
-              <!--[labels]="barChartLabels"-->
-              <!--[options]="barChartOptions"-->
-              <!--[legend]="barChartLegend"-->
-              <!--[chartType]="barChartType"-->
-              <!--(chartHover)="chartHovered($event)"-->
-              <!--(chartClick)="chartClicked($event)"></canvas>-->
-    <!--</div>-->
-
-  <!--</div>-->
+</div>
+  <div style="display: block"  id="doughnutChart">
+    <b class="nameOfChart">Club usage chart</b>
+    <p>This chart shows how many full shots you have taken with each club. Simply click on the the coloured icon with the club name beside it to see how often the club is used. When you click on the club it will be added to the dougnut chart.</p>
+    <canvas baseChart
+            [colors]="chartColors"
+            [options]="doughnutChartOptions"
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
 </div>
 
 
@@ -277,5 +265,3 @@
 
 
 
-
-  </div>

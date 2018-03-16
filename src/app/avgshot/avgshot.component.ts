@@ -82,6 +82,26 @@ export class AvgshotComponent implements OnInit {
   temp= 0;
   dates: any[];
   distanceArray: Array<number>;
+  driverCounter = 0;
+  woodCounter = 0;
+  fiveCounter = 0;
+  sixCounter = 0;
+  sevenCounter = 0;
+  eigthCounter = 0;
+  nineCounter = 0;
+  swCounter = 0;
+  counterArray: Array<number>;
+ public doughnutChartData: number [];
+  public doughnutChartLabels: string [] = ['Driver', '3Wood', '5Iron', '6Iron', '7Iron', '8Iron', '9Iron', 'swIron'];
+  public doughnutChartType: string = 'doughnut';
+  public chartColors: any[] = [
+    {
+      backgroundColor:["#000000", "#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0", "#7360ff", "#ff609d", "#ffc360"]
+    }];
+  public doughnutChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
 
   userList: FirebaseListObservable<User[]>;
@@ -96,7 +116,7 @@ export class AvgshotComponent implements OnInit {
               private db: AngularFireDatabase, private cs: ChatService) {
 
 
-
+    this.doughnutChartData= [0];
     this.distanceArray = [0];
     this.dates = [0];
     this.userLongestDrive = [''];
@@ -150,6 +170,8 @@ export class AvgshotComponent implements OnInit {
          // console.log('driver ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.driverCounter++;
+          console.log('woodcounter ' + this.woodCounter);
 
           if (parseFloat(i.shotDistance) > this.driverlongest) {
             this.driverlongest = parseFloat(i.shotDistance);
@@ -185,6 +207,8 @@ export class AvgshotComponent implements OnInit {
 
         this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         this.counter++;
+        this.woodCounter++;
+        console.log('woodcounter ' + this.woodCounter);
         if (parseFloat(i.shotDistance) > this.woodlongest) {
           this.woodlongest = parseFloat(i.shotDistance);
         }
@@ -213,6 +237,8 @@ export class AvgshotComponent implements OnInit {
 
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.fiveCounter++;
+          console.log('fivecounter ' + this.fiveCounter);
           if (parseFloat(i.shotDistance) > this.fivelongest) {
             this.fivelongest = parseFloat(i.shotDistance);
           }
@@ -237,6 +263,8 @@ export class AvgshotComponent implements OnInit {
          console.log('6 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.sixCounter++;
+
           console.log(this.counter);
           if (parseFloat(i.shotDistance) > this.sixlongest) {
             this.sixlongest = parseFloat(i.shotDistance);
@@ -262,6 +290,8 @@ export class AvgshotComponent implements OnInit {
         if (i.club === '7I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full') {
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.sevenCounter++;
+
           if (parseFloat(i.shotDistance) > this.sevenlongest) {
             this.sevenlongest = parseFloat(i.shotDistance);
           }
@@ -286,6 +316,7 @@ export class AvgshotComponent implements OnInit {
          // console.log('8 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.eigthCounter++;
           if (parseFloat(i.shotDistance) > this.eigthlongest) {
             this.eigthlongest = parseFloat(i.shotDistance);
           }
@@ -311,6 +342,7 @@ export class AvgshotComponent implements OnInit {
          // console.log(' 9 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.nineCounter++;
           if (parseFloat(i.shotDistance) > this.ninelongest) {
             this.ninelongest = parseFloat(i.shotDistance);
           }
@@ -335,6 +367,7 @@ export class AvgshotComponent implements OnInit {
          // console.log('sw iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           this.counter++;
+          this.swCounter++;
           if (parseFloat(i.shotDistance) > this.swlongest) {
             this.swlongest = parseFloat(i.shotDistance);
           }
@@ -364,6 +397,8 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.woodCounter++;
+          console.log('woodcounter ' + this.woodCounter);
          // console.log('3 wood 3/4' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         }
@@ -382,6 +417,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.fiveCounter++;
          // console.log('5 3/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -401,6 +437,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '6I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.sixCounter++;
          // console.log('6 3/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -421,6 +458,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '7I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.sevenCounter++;
           //console.log('7 3/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -440,6 +478,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '8I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.eigthCounter++;
           //console.log('8 3/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -459,6 +498,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '9I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.nineCounter++;
          // console.log(' 9  3/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -479,6 +519,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === 'sw'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '3/4') {
           this.counter++;
+          this.swCounter++;
           //console.log('sw iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         }
@@ -505,7 +546,8 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
-
+          this.woodCounter++;
+          console.log('woodcounter ' + this.woodCounter);
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
           console.log('3 wood 1/2' + i.shotDistance );
           console.log('totals dist ' + this.totalDistance);
@@ -530,6 +572,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.fiveCounter++;
          // console.log('5 1/2 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -554,6 +597,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '6I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.sixCounter++;
          // console.log('6 1/2 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -577,6 +621,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '7I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.sevenCounter++;
           //console.log('7 1/2 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -599,6 +644,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '8I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.eigthCounter++;
          // console.log('8 1/2 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -620,6 +666,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '9I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.nineCounter++;
           //console.log(' 9  1/2 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -641,6 +688,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === 'sw'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/2') {
           this.counter++;
+          this.swCounter++;
           //console.log('sw iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         }
@@ -664,6 +712,8 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '3W' && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.woodCounter++;
+
          // console.log('3 wood 1/4' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         }
@@ -681,6 +731,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '5I' && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.fiveCounter++;
          // console.log('5 1/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -701,6 +752,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '6I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.sixCounter++;
          // console.log('6 1/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -720,6 +772,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '7I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.sevenCounter++;
           //console.log('7 1/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -740,6 +793,7 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === '8I'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.eigthCounter++;
         //  console.log('8 1/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
 
@@ -781,6 +835,9 @@ export class AvgshotComponent implements OnInit {
       for (const i of result) {
         if (i.club === 'sw'  && parseFloat(i.shotDistance) > 0 && i.swingLength === '1/4') {
           this.counter++;
+          this.swCounter++;
+          this.doughnutChartData[7] = this.swCounter;
+
          // console.log('sw 1/4 iron total ' + parseFloat(i.shotDistance));
           this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
         }
@@ -788,6 +845,41 @@ export class AvgshotComponent implements OnInit {
       this.temp = this.totalDistance / this.counter;
       this.swquater = Math.floor(this.temp * 100) / 100;
     });
+
+    // count each shot taken with a club for the donut graph, add them to the data
+    this.shots.subscribe(result => {
+
+      for (const i of result) {
+        if (i.club === 'D' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full' ) {
+         this.driverCounter++;
+        }else if (i.club === '3W' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.woodCounter++;
+      }else if (i.club === '5I' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.fiveCounter++;
+        }else if (i.club === '6I' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.sixCounter++;
+        }else if (i.club === '7I' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.sevenCounter++;
+        }else if (i.club === '8I' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.eigthCounter++;
+        }else if (i.club === '9I' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.nineCounter++;
+        }else if (i.club === 'sw' && parseFloat(i.shotDistance) > 0 &&  parseFloat(i.heartRatePreShot) > 0 && i.swingLength === 'Full') {
+          this.swCounter++;
+        }
+      }
+      this.doughnutChartData[0] = this.driverCounter;
+      this.doughnutChartData.push(this.woodCounter);
+      this.doughnutChartData.push( this.fiveCounter);
+      this.doughnutChartData.push(this.sixCounter);
+      this.doughnutChartData.push(this.sevenCounter);
+      this.doughnutChartData.push(this.eigthCounter);
+      this.doughnutChartData.push(this.nineCounter);
+      this.doughnutChartData.push(this.swCounter);
+      console.log(this.doughnutChartLabels);
+      console.log(this.doughnutChartData);
+    });
+
 
 
     ///////////////// top long shots ///////////////
@@ -822,6 +914,18 @@ export class AvgshotComponent implements OnInit {
     const path = `/Users/${userId}`;
     return this.db.object(path);
   }
+
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
+
+
+
 }
 
 
