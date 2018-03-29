@@ -458,7 +458,9 @@ export class AvglistComponent implements OnInit {
       this.distanceArray = [];
       for (const i of result) {
         //&& i.swingLength === 'full'
+
         if (i.club === '9I' && parseFloat(i.shotDistance) > 0 && i.swingLength === 'Full' &&  parseFloat(i.heartRatePreShot) > 0) {
+       // if (i.club === '9I' ) {
 
           const year = i.$key.slice(0, 4);
           const month = i.$key.slice(5, 7);
@@ -472,16 +474,18 @@ export class AvglistComponent implements OnInit {
           //this.dates.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min);
           this.barChartLabels9i.push(day + '/' + month + '/' + '/' + year + ' ' + hour + ':' + min + ':' + second);
           this.distanceArray9.push(parseFloat(i.shotDistance));
-          this.stressArray9.push(parseFloat(i.gsr)/1000);
+          this.stressArray9.push(parseFloat(i.gsr) / 1000);
           this.HRArray9.push(parseFloat(i.heartRatePreShot));
           this.sTempArray9.push(parseFloat(i.skinTemp));
           this.wristSpeedArray9.push(parseFloat(i.shotVelocity));
 
-
+          console.log("9 iron: " + i.$key);
 
         }
       }
-
+        console.log(
+          'disance ' + this.distanceArray9.length
+        )
       this.barChartData9i = [{data: this.distanceArray9, label: '9 Iron distances in meters'},
         {data: this.stressArray9, label: 'GSR level in ohm/10000', type: 'line'},
         {data: this.HRArray9, label: 'Heart rate in BPM', type: 'line'},

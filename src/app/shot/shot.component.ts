@@ -199,30 +199,30 @@ export class ShotComponent implements OnInit {
       {data: this.sTempArrayD, label: 'Skin tempemp in Celsius'}];
 
 
-    this.shots = this.ss.getShotsNoParams();
-
-    this.shots.subscribe(result => {
-
-      this.counter = 0;
-      this.totalDistance = 0;
-      this.temp = 0;
-      this.longest = 0;
-
-      for (const i of result) {
-        if (i.club === this.club && parseFloat(i.shotDistance) > 0 && i.swingLength === this.swingLength) {
-
-          this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
-          this.counter++;
-          if (parseFloat(i.shotDistance) > this.longest) {
-            this.longest = parseFloat(i.shotDistance);
-          }
-        }
-      }
-
-      this.longest = Math.floor(this.longest * 100) / 100;
-      this.temp = this.totalDistance / this.counter;
-      this.average = Math.floor(this.temp * 100) / 100;
-    });
+    // this.shots = this.ss.getShotsNoParams();
+    //
+    // this.shots.subscribe(result => {
+    //
+    //   this.counter = 0;
+    //   this.totalDistance = 0;
+    //   this.temp = 0;
+    //   this.longest = 0;
+    //
+    //   for (const i of result) {
+    //     if (i.club === this.club && parseFloat(i.shotDistance) > 0 && i.swingLength === this.swingLength) {
+    //
+    //       this.totalDistance = this.totalDistance + parseFloat(i.shotDistance);
+    //       this.counter++;
+    //       if (parseFloat(i.shotDistance) > this.longest) {
+    //         this.longest = parseFloat(i.shotDistance);
+    //       }
+    //     }
+    //   }
+    //
+    //   this.longest = Math.floor(this.longest * 100) / 100;
+    //   this.temp = this.totalDistance / this.counter;
+    //   this.average = Math.floor(this.temp * 100) / 100;
+    // });
 
 
 

@@ -45,14 +45,14 @@ export class ShotsService {
   }
 
   getShots(start, end): FirebaseListObservable<ShotMod[]> {
-    return this.db.list( this.shotsPath, {
+    return this.db.list(this.shotsPath, {
         query: {
           orderByChild: 'club',
-          limitTolast: 100,
+          limitTolast: 5,
           startAt: start,
           endAt: end
-      }
-    });
+        }
+      });
   }
   getShotsNoParams(): FirebaseListObservable<ShotMod[]> {
 
@@ -107,7 +107,7 @@ export class ShotsService {
     return this.db.list( this.shotsPath, {
       query: {
         orderByChild: 'day',
-        limitToLast: 25,
+        limitToLast: 5,
         startAt: start,
         endAt: end
       }

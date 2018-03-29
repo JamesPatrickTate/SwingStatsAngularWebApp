@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {ChatService} from '../services/chat.service';
 import {forEach} from '@angular/router/src/utils/collection';
 import { Subject } from 'rxjs/Subject'
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 //import { read } from 'fs';
 
@@ -35,6 +36,8 @@ export class ShotlistComponent implements OnInit {
   searchShots;
   startAt = new Subject();
   endAt = new Subject();
+  input = new BehaviorSubject('test');
+  st: string;
 
 
   constructor(private af: AngularFireDatabase,
@@ -75,11 +78,17 @@ export class ShotlistComponent implements OnInit {
     // this.shots.subscribe(result => {
     //   console.log('Number of shots returned:: ' + result.length);
     // });
-    console.log('start: ' + this.startAt + '/n' + 'end: ' + this.endAt);
-    //this.ss.getShots('5I', '').subscribe(shots => this.shots = shots);
 
-    this.ss.getShots(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
-    this.ss.getShotsDATE(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
+
+
+    // if (this.input.getValue().charAt(0) === '2') {
+    //   this.ss.getShotsDATE(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
+    // }else {
+    //   this.ss.getShots(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
+    // }
+   // this.ss.getShots(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
+
+    console.log('init st ' + this.st);
 
 
   }
@@ -87,9 +96,15 @@ export class ShotlistComponent implements OnInit {
 
   search($event) {
     let q = $event.target.value;
+    this.st = q;
     console.log('q: ' + q);
+    console.log('st ' + this.st );
     this.startAt.next(q);
     this.endAt.next(q +'\uf8ff' );
+
+    if (this.st.charAt(0) === '2') {
+      this.ss.getShotsDATE(this.startAt, this.endAt).subscribe(shots => this.shots = shots);
+    }else { this.ss.getShots(this.startAt, this.endAt).subscribe(shots => this.shots = shots);}
   }
 
 
